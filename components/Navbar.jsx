@@ -10,6 +10,7 @@ import profileDefault from '@/assets/images/profile.png';
 
 export default function Navbar() {
   const { data: session } = useSession();
+  const profileImage = session?.user?.image;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -168,8 +169,10 @@ export default function Navbar() {
                     <span className='sr-only'>Open user menu</span>
                     <Image
                       className='w-8 h-8 rounded-full'
-                      src={profileDefault}
+                      src={profileImage || profileDefault}
                       alt=''
+                      width={40}
+                      height={40}
                     />
                   </button>
                 </div>
