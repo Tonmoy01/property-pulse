@@ -13,7 +13,7 @@ export default function Navbar() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [providers, setProviders] = useState(false);
+  const [providers, setProviders] = useState(null);
 
   const pathname = usePathname();
 
@@ -26,6 +26,8 @@ export default function Navbar() {
 
     setAuthProviders();
   }, []);
+
+  console.log(session);
 
   return (
     <nav className='bg-blue-700 border-b border-blue-500'>
