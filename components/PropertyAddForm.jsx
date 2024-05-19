@@ -4,27 +4,27 @@ import { useState, useEffect } from 'react';
 const PropertyAddForm = () => {
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState({
-    type: 'Apartment',
-    name: 'Test Property',
+    type: '',
+    name: '',
     description: '',
     location: {
       street: '',
-      city: 'Test City',
-      state: 'Test State',
+      city: '',
+      state: '',
       zipcode: '',
     },
-    beds: '3',
-    baths: '2',
-    square_feet: '1800',
+    beds: '',
+    baths: '',
+    square_feet: '',
     amenities: [],
     rates: {
       weekly: '',
-      monthly: '2000',
+      monthly: '',
       nightly: '',
     },
     seller_info: {
       name: '',
-      email: 'test@test.com',
+      email: '',
       phone: '',
     },
     images: [],
@@ -37,6 +37,7 @@ const PropertyAddForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // Check if nested property
     if (name.includes('.')) {
       const [outerKey, innerKey] = name.split('.');
 
@@ -48,43 +49,50 @@ const PropertyAddForm = () => {
         },
       }));
     } else {
+      // Not nested
       setFields((prevFields) => ({
         ...prevFields,
         [name]: value,
       }));
     }
   };
-
   const handleAmenitiesChange = (e) => {
     const { value, checked } = e.target;
 
-    const updatedAmenities = [...fields.amenities];
+    // Clone the current array
+    const updatedAmenites = [...fields.amenities];
 
     if (checked) {
-      updatedAmenities.push(value);
+      // Add value to array
+      updatedAmenites.push(value);
     } else {
-      const index = updatedAmenities.indexOf(value);
+      // Remove value from array
+      const index = updatedAmenites.indexOf(value);
 
       if (index !== -1) {
-        updatedAmenities.splice(index, 1);
+        updatedAmenites.splice(index, 1);
       }
     }
 
+    // Update state with updated array
     setFields((prevFields) => ({
       ...prevFields,
-      amenities: updatedAmenities,
+      amenities: updatedAmenites,
     }));
   };
 
   const handleImageChange = (e) => {
     const { files } = e.target;
 
+    // Clone images array
     const updatedImages = [...fields.images];
 
+    // Add new files to the array
     for (const file of files) {
       updatedImages.push(file);
     }
 
+    // Update state with array of images
     setFields((prevFields) => ({
       ...prevFields,
       images: updatedImages,
@@ -424,7 +432,7 @@ const PropertyAddForm = () => {
                 name='amenities'
                 value='Smart TV'
                 className='mr-2'
-                checked={fields.amenities.includes('Smart Tv')}
+                checked={fields.amenities.includes('Smart TV')}
                 onChange={handleAmenitiesChange}
               />
               <label htmlFor='amenity_smart_tv'>Smart TV</label>
@@ -558,14 +566,14 @@ const PropertyAddForm = () => {
             className='w-full px-3 py-2 border rounded'
             accept='image/*'
             multiple
-            required
             onChange={handleImageChange}
+            required
           />
         </div>
 
         <div>
           <button
-            className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline'
+            className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:shadow-outline'
             type='submit'
           >
             Add Property

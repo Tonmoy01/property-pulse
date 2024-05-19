@@ -49,7 +49,7 @@ const PropertySchema = new Schema(
         type: String,
       },
     ],
-    reates: {
+    rates: {
       nightly: {
         type: Number,
       },
