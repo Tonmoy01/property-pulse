@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import profileDefault from '@/assets/images/profile.png';
 import Spinner from '@/components/Spinner';
 import Modal from '@/components/Modal';
+import { toast } from 'react-toastify';
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -61,9 +62,13 @@ export default function ProfilePage() {
         );
         setShowModal(false);
         setSelectedPropertyId(null);
+        toast.success('Property Deleted');
+      } else {
+        toast.error('Failed to delete property.');
       }
     } catch (error) {
       console.log(error);
+      toast.error('Failed to delete property.');
     }
   };
 
