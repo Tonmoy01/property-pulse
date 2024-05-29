@@ -109,7 +109,7 @@ export default function ProfilePage() {
               ) : (
                 properties?.map((property) => (
                   <div className='mb-10' key={property._id}>
-                    <Link href={`/properties/${properties._id}`}>
+                    <Link href={`/properties/${property._id}`}>
                       <Image
                         className='object-cover w-full h-32 rounded-md'
                         src={property.images[0]}
