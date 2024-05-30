@@ -18,9 +18,9 @@ const PropertyAddForm = () => {
     square_feet: '',
     amenities: [],
     rates: {
+      nightly: '',
       weekly: '',
       monthly: '',
-      nightly: '',
     },
     seller_info: {
       name: '',
@@ -56,6 +56,7 @@ const PropertyAddForm = () => {
       }));
     }
   };
+
   const handleAmenitiesChange = (e) => {
     const { value, checked } = e.target;
 

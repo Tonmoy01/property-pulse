@@ -24,9 +24,9 @@ const PropertyEditForm = () => {
     square_feet: '',
     amenities: [],
     rates: {
+      nightly: '',
       weekly: '',
       monthly: '',
-      nightly: '',
     },
     seller_info: {
       name: '',
@@ -142,7 +142,7 @@ const PropertyEditForm = () => {
     !loading && (
       <form onSubmit={handleSubmit}>
         <h2 className='mb-6 text-3xl font-semibold text-center'>
-          Add Property
+          Update Property
         </h2>
 
         <div className='mb-4'>
